@@ -22,6 +22,15 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findAll();
     }
 
+
+    @Override
+    public List<Task> findAllOrderByTitle(String order) {
+        if (order.equals("asc")) {
+            return taskRepository.findAllByOrderByTitleAsc();
+        } else {
+            return taskRepository.findAllByOrderByTitleDesc();
+        }
+    }
     @Override
     public Optional<Task> findById(Long id) {
         return repository.findById(id);
@@ -43,7 +52,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
 }
